@@ -16,25 +16,23 @@ import { z } from "zod";
 import CustomInput from './CustomInput';
 
 const AuthForm = ({ type }: { type: string }) => {
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<Partial<User> | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
     const formSchema = authFormSchema(type);
 
-    // 1. Define your form.
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             email: "",
             password: ''
         },
-    })
+    });
 
-    // 2. Define a submit handler.
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
         setIsLoading(true);
         setUser(data);
-    }
+    };
 
     return (
         <section className="auth-form">
@@ -77,7 +75,7 @@ const AuthForm = ({ type }: { type: string }) => {
                                 <>
                                     <div className="flex gap-4">
                                         <CustomInput control={form.control} name='firstName' label="First Name" placeholder='Enter your first name' />
-                                        <CustomInput control={form.control} name='lastName' label="Last Name" placeholder='Enter your first name' />
+                                        <CustomInput control={form.control} name='lastName' label="Last Name" placeholder='Enter your last name' />
                                     </div>
                                     <CustomInput control={form.control} name='address1' label="Address" placeholder='Enter your specific address' />
                                     <CustomInput control={form.control} name='city' label="City" placeholder='Enter your city' />
@@ -93,7 +91,6 @@ const AuthForm = ({ type }: { type: string }) => {
                             )}
 
                             <CustomInput control={form.control} name='email' label="Email" placeholder='Enter your email' />
-
                             <CustomInput control={form.control} name='password' label="Password" placeholder='Enter your password' />
 
                             <div className="flex flex-col gap-4">
@@ -123,7 +120,7 @@ const AuthForm = ({ type }: { type: string }) => {
                 </>
             )}
         </section>
-    )
-}
+    );
+};
 
-export default AuthForm
+export default AuthForm;
