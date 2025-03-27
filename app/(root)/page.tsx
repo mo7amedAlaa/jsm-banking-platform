@@ -24,7 +24,7 @@ const Home = () => {
                     <HeaderBox
                         type='greeting'
                         title='Welcome'
-                        user={loggedIn?.fristName}
+                        user={loggedIn?.firstName}
                         subtext='Access and mange your account and transactions efficiently.'
                     />
                     <TotalBalanceBox
