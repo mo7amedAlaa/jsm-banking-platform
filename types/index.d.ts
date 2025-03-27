@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+ 
 
 declare type SearchParamProps = {
   params: { [key: string]: string };
@@ -209,6 +209,7 @@ declare interface TotlaBalanceBoxProps {
 }
 
 declare interface FooterProps {
+type: string;
   user: User;
 }
 
