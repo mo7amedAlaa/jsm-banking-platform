@@ -16,7 +16,7 @@ import { z } from "zod";
 import CustomInput from './CustomInput';
 
 const AuthForm = ({ type }: { type: string }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
     const formSchema = authFormSchema(type);
