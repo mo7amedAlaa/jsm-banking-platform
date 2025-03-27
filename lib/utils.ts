@@ -134,39 +134,24 @@ export function countTransactionCategories(
   transactions: Transaction[]
 ): CategoryCount[] {
   const categoryCounts: { [category: string]: number } = {};
+  const totalCount = transactions.length;  
 
-  transactions.forEach((transaction) => {
+   transactions.forEach((transaction) => {
     const category = transaction.category;
-
-    if (categoryCounts[category]) {
-      categoryCounts[category]++;
-    } else {
-      categoryCounts[category] = 1;
-    }
+    categoryCounts[category] = (categoryCounts[category] || 0) + 1;
   });
 
-  // Convert object to an array of { category, count }
-  return Object.entries(categoryCounts).map(([category, count]) => ({
-    category,
-    count,
-  }));
-}
-
-
-  // Convert the categoryCounts object to an array of objects
-  const aggregatedCategories: CategoryCount[] = Object.keys(categoryCounts).map(
-    (category) => ({
+   const aggregatedCategories: CategoryCount[] = Object.entries(categoryCounts).map(
+    ([category, count]) => ({
       name: category,
-      count: categoryCounts[category],
-      totalCount,
+      count,
+      totalCount,  
     })
   );
 
-  // Sort the aggregatedCategories array by count in descending order
-  aggregatedCategories.sort((a, b) => b.count - a.count);
-
-  return aggregatedCategories;
+   return aggregatedCategories.sort((a, b) => b.count - a.count);
 }
+
 
 export function extractCustomerIdFromUrl(url: string) {
   // Split the URL string by '/'
