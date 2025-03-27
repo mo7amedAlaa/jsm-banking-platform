@@ -11,14 +11,12 @@ import {
 import { authFormSchema } from '@/lib/utils';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import CustomInput from './CustomInput';
 
 const AuthForm = ({ type }: { type: string }) => {
-    const router = useRouter();
-    const [user, setUser] = useState(null);
+
     const [isLoading, setIsLoading] = useState(false);
 
     const formSchema = authFormSchema(type);
@@ -34,9 +32,9 @@ const AuthForm = ({ type }: { type: string }) => {
 
     // 2. Define a submit handler.
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
+        data.email = data.email;
         setIsLoading(true);
 
-        v
     }
 
     return (

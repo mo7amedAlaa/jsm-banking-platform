@@ -1,9 +1,7 @@
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 const Footer = ({ user, type = 'desktop' }: FooterProps) => {
-    const router = useRouter();
 
     const handleLogOut = async () => {
 
